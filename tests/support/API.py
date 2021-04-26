@@ -1,7 +1,7 @@
 import requests
 
 url = "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=rhrread&lang=en"
-expectedResponseTime = 2  # expected response time in seconds
+expectedResponseTime = 0.5  # expected response time in seconds
 
 
 def getCurrentWeatherReport():
