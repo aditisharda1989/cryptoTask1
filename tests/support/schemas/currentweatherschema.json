@@ -1,0 +1,473 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "lightning": {
+      "description": "Lightning",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "place": {
+                  "type": "string",
+                  "description": "Location"
+                },
+                "occur": {
+                  "type": "string",
+                  "enum": [
+                    "true"
+                  ]
+                }
+              },
+              "required": [
+                "place",
+                "occur"
+              ]
+            }
+          ]
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Start Time\nYYYY-MM-DD'T'hh:mm:ssZ\nExample:\n2020-09-01T08:19:00+08:00"
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "End Time\nYYYY-MM-DD'T'hh:mm:ssZ\nExample:\n2020-09-01T08:19:00+08:00"
+        }
+      },
+      "required": [
+        "data",
+        "startTime",
+        "endTime"
+      ]
+    },
+    "rainfall": {
+      "type": "object",
+      "description": "RainFall",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "unit": {
+                  "type": "string",
+                  "description": "unit"
+                },
+                "place": {
+                  "type": "string",
+                  "description": "Location"
+                },
+                "max": {
+                  "type": "number",
+                  "description": "Maximum rainfall record"
+                },
+                "min": {
+                  "type": "number",
+                  "description": "Minimum rainfall record"
+                },
+                "main": {
+                  "type": "string",
+                  "enum": [
+                    "TRUE",
+                    "FALSE"
+                  ],
+                  "description": "Maintenance flag(TRUE/FALSE)"
+                }
+              },
+              "required": [
+                "unit",
+                "place",
+                "main"
+              ]
+            }
+          ]
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Rainfall Start Time\nYYYY-MM-DD'T'hh:mm:ssZ\nExample:\n2020-09-01T08:19:00+08:00"
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Rainfall End Time\nYYYY-MM-DD'T'hh:mm:ssZ\nExample:\n2020-09-01T08:19:00+08:00"
+        }
+      },
+      "required": [
+        "data",
+        "startTime",
+        "endTime"
+      ]
+    },
+    "icon": {
+      "type": "array",
+      "description": "Weather icon list: https://www.hko.gov.hk/textonly/v2/explain/wxicon_e.htm"
+    },
+    "iconUpdateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Icon Update Time YYYY-MM-DD'T'hh:mm:ssZ\nExample:\n2020-09-01T08:19:00+08:00"
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Update Time YYYY-MM-DD'T'hh:mm:ssZ\nExample:\n2020-09-01T08:19:00+08:00"
+    },
+    "temperature": {
+      "type": "object",
+      "description": "Temperature",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "place": {
+                  "type": "string",
+                  "description": "Location"
+                },
+                "value": {
+                  "type": "number",
+                  "description": "Temperature Value"
+                },
+                "unit": {
+                  "type": "string",
+                  "description": "Temperature Unit"
+                }
+              },
+              "required": [
+                "place",
+                "value",
+                "unit"
+              ]
+            }
+          ]
+        },
+        "recordTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Temperature Record Time"
+        }
+      },
+      "required": [
+        "data",
+        "recordTime"
+      ]
+    },
+    "warningMessage": {
+      "type": [
+        "array",
+        "string"
+      ],
+      "description": "Warning Message"
+    },
+    "rainstormReminder": {
+      "description": "Rainstorm Reminder"
+    },
+    "specialWxTips1": {
+      "type": "array",
+      "description": "Special Weather Tips"
+    },
+    "mintempFrom00To09": {
+      "type": "string",
+      "description": "Minimum temperature from midnight to 9 am"
+    },
+    "rainfallFrom00To12": {
+      "type": "string",
+      "description": "Accumulated rainfall at HKO from midnight to noon"
+    },
+    "rainfallLastMonth": {
+      "type": "string",
+      "description": "Rainfall in last month"
+    },
+    "rainfallJanuaryToLastMonth": {
+      "type": "string",
+      "description": "Accumulated rainfall from January to last month"
+    },
+    "tcmessage": {
+      "type": [
+        "array",
+        "string"
+      ]
+    },
+    "humidity": {
+      "type": "object",
+      "description": "Humidity",
+      "properties": {
+        "recordTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Humidity record Time YYYY-MM-DD'T'hh:mm:ssZ"
+        },
+        "data": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "unit": {
+                  "type": "string",
+                  "description": "Humidity Unit"
+                },
+                "value": {
+                  "type": "number",
+                  "description": "Humidity value"
+                },
+                "place": {
+                  "type": "string",
+                  "description": "Humidity Location"
+                }
+              },
+              "required": [
+                "unit",
+                "value",
+                "place"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "recordTime",
+        "data"
+      ]
+    }
+  },
+  "oneOf": [
+    {
+      "properties": {
+        "lightning": {
+          "$ref": "#/definitions/lightning"
+        },
+        "rainfall": {
+          "$ref": "#/definitions/rainfall"
+        },
+        "icon": {
+          "$ref": "#/definitions/icon",
+          "items": [
+            {
+              "type": "integer",
+              "enum": [
+                50,
+                51,
+                52,
+                53,
+                54,
+                60,
+                61,
+                62,
+                63,
+                64,
+                65,
+                80,
+                81,
+                82,
+                83,
+                84,
+                85,
+                90,
+                91,
+                92,
+                93
+              ]
+            }
+          ]
+        },
+        "iconUpdateTime": {
+          "$ref": "#/definitions/iconUpdateTime"
+        },
+        "uvindex": {
+          "type": "object",
+          "description": "UV Index during day",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "place": {
+                    "type": "string",
+                    "description": "Location"
+                  },
+                  "value": {
+                    "type": "number",
+                    "description": "UV Index Value"
+                  },
+                  "desc": {
+                    "type": "string",
+                    "description": "UV Index Description"
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "UV Index message"
+                  }
+                },
+                "required": [
+                  "place",
+                  "value",
+                  "desc"
+                ]
+              }
+            },
+            "recordDesc": {
+              "type": "string",
+              "description": "record description"
+            }
+          },
+          "required": [
+            "data",
+            "recordDesc"
+          ]
+        },
+        "updateTime": {
+          "$ref": "#/definitions/updateTime"
+        },
+        "temperature": {
+          "$ref": "#/definitions/temperature"
+        },
+        "warningMessage": {
+          "$ref": "#/definitions/warningMessage"
+        },
+        "rainstormReminder": {
+          "$ref": "#/definitions/rainstormReminder"
+        },
+        "specialWxTips1": {
+          "$ref": "#/definitions/specialWxTips1"
+        },
+        "mintempFrom00To09": {
+          "$ref": "#/definitions/mintempFrom00To09"
+        },
+        "rainfallFrom00To12": {
+          "$ref": "#/definitions/rainfallFrom00To12"
+        },
+        "rainfallLastMonth": {
+          "$ref": "#/definitions/rainfallLastMonth"
+        },
+        "rainfallJanuaryToLastMonth": {
+          "$ref": "#/definitions/rainfallJanuaryToLastMonth"
+        },
+        "tcmessage": {
+          "$ref": "#/definitions/tcmessage"
+        },
+        "humidity": {
+          "$ref": "#/definitions/humidity"
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "lightning": {
+          "$ref": "#/definitions/lightning"
+        },
+        "rainfall": {
+          "$ref": "#/definitions/rainfall"
+        },
+        "icon": {
+          "$ref": "#/definitions/icon",
+          "items": [
+            {
+              "type": "integer",
+              "enum": [
+                50,
+                51,
+                52,
+                53,
+                54,
+                60,
+                61,
+                62,
+                63,
+                64,
+                65,
+                70,
+                71,
+                72,
+                73,
+                74,
+                75,
+                76,
+                77,
+                80,
+                81,
+                82,
+                83,
+                84,
+                85,
+                90,
+                91,
+                92,
+                93
+              ]
+            }
+          ]
+        },
+        "iconUpdateTime": {
+          "$ref": "#/definitions/iconUpdateTime"
+        },
+        "uvindex": {
+          "type": "string",
+          "enum": [
+            ""
+          ],
+          "description": "UV Index during Night"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Update Time YYYY-MM-DD'T'hh:mm:ssZ\nExample:\n2020-09-01T08:19:00+08:00"
+        },
+        "temperature": {
+          "$ref": "#/definitions/temperature"
+        },
+        "warningMessage": {
+          "$ref": "#/definitions/warningMessage"
+        },
+        "rainstormReminder": {
+          "$ref": "#/definitions/rainstormReminder"
+        },
+        "specialWxTips1": {
+          "$ref": "#/definitions/specialWxTips1"
+        },
+        "mintempFrom00To09": {
+          "$ref": "#/definitions/mintempFrom00To09"
+        },
+        "rainfallFrom00To12": {
+          "$ref": "#/definitions/rainfallFrom00To12"
+        },
+        "rainfallLastMonth": {
+          "$ref": "#/definitions/rainfallLastMonth"
+        },
+        "rainfallJanuaryToLastMonth": {
+          "$ref": "#/definitions/rainfallJanuaryToLastMonth"
+        },
+        "tcmessage": {
+          "$ref": "#/definitions/tcmessage"
+        },
+        "humidity": {
+          "$ref": "#/definitions/humidity"
+        }
+      },
+      "additionalProperties": false
+    }
+  ],
+  "required": [
+    "rainfall",
+    "icon",
+    "iconUpdateTime",
+    "updateTime",
+    "temperature",
+    "warningMessage",
+    "humidity",
+    "uvindex"
+  ]
+}
